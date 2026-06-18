@@ -30,7 +30,7 @@ btnVerificar.addEventListener('click', () => {
     divResultado.classList.remove('escondido');
 });
 
-// 3. Mecânica Avançada: Jogo da Memória
+// 3. Mecânica do Jogo da Memória (Corrigida)
 const conceitos = [
     'Deepfake', 'Deepfake',
     'Fact-Checking', 'Fact-Checking',
@@ -38,7 +38,7 @@ const conceitos = [
     'Privacidade', 'Privacidade'
 ];
 
-// Embaralha os itens usando o método básico de ordenação aleatória
+// Embaralha os itens
 const conceitosEmbaralhados = conceitos.sort(() => 0.5 - Math.random());
 const tabuleiro = document.getElementById('tabuleiro');
 const statusJogo = document.getElementById('status-jogo');
@@ -46,13 +46,16 @@ const statusJogo = document.getElementById('status-jogo');
 let cartasSelecionadas = [];
 let paresEncontrados = 0;
 
+// Limpa o tabuleiro antes de desenhar (evita duplicações se reiniciar)
+tabuleiro.innerHTML = "";
+
 // Inicializa e monta as cartas dinamicamente no DOM
-conteitosEmbaralhados.forEach((conceito, index) => {
+conceitosEmbaralhados.forEach((conceito, index) => {
     const carta = document.createElement('div');
     carta.classList.add('carta-memoria');
     carta.dataset.nome = conceito;
     carta.dataset.id = index;
-    carta.textContent = conceito; // O texto fica oculto via CSS pela cor transparente
+    carta.textContent = "?"; // Começa escondido com um sinal de interrogação
     
     carta.addEventListener('click', virarCarta);
     tabuleiro.appendChild(carta);
@@ -64,7 +67,9 @@ function virarCarta() {
         return;
     }
 
+    // Revela o texto real da carta ao clicar
     this.classList.add('revelada');
+    this.textContent = this.dataset.nome; 
     cartasSelecionadas.push(this);
 
     if (cartasSelecionadas.length === 2) {
@@ -86,10 +91,12 @@ function checarPar() {
             statusJogo.textContent = "🏆 Excelente! Você dominou todos os conceitos contra a desinformação!";
         }
     } else {
-        // Se errarem o par, vira de volta após 1 segundo
+        // Se errarem o par, vira de volta para "?" após 1 segundo
         setTimeout(() => {
             carta1.classList.remove('revelada');
             carta2.classList.remove('revelada');
+            carta1.textContent = "?";
+            carta2.textContent = "?";
             cartasSelecionadas = [];
         }, 1000);
     }
