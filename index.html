@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal Cidadania Digital: Deepfakes e Desinformação</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Cidadania Digital</h1>
+        <button id="btn-tema">Alternar Modo Escuro</button>
+    </header>
+
+    <main>
+        <section class="introducao">
+            <h2>O Impacto das Deepfakes</h2>
+            <p>As deepfakes utilizam Inteligência Artificial para manipular vídeos e áudios, criando conteúdos falsos hiper-realistas. Fique atento e aprenda a identificar a desinformação automatizada!</p>
+        </section>
+
+        <section class="quiz-container">
+            <h2>Quiz: Você sabe identificar uma Deepfake?</h2>
+            <form id="quiz-form">
+                <div class="pergunta">
+                    <label for="pergunta1"><strong>1. Qual destes é um sinal comum de um vídeo deepfake?</strong></label>
+                    <div class="opcoes">
+                        <label><input type="radio" name="p1" value="errado"> Movimentos perfeitamente naturais.</label>
+                        <label><input type="radio" name="p1" value="correto"> Piscadas de olhos anormais ou sombras desalinhadas no rosto.</label>
+                        <label><input type="radio" name="p1" value="errado"> Áudio com excelente qualidade de estúdio.</label>
+                    </div>
+                </div>
+                <button type="button" id="btn-verificar">Verificar Resposta</button>
+            </form>
+            <div id="resultado" class="escondido"></div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 - Projeto de Educação Digital e Computação. Desenvolvido para conscientização comunitária.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
