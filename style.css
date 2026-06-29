@@ -1,3 +1,134 @@
+/* Variáveis para controlar os modos Claro e Escuro */
+:root {
+    --bg-principal: #f4f7f6;
+    --bg-container: #ffffff;
+    --texto: #2c3e50;
+    --primaria: #3498db;
+    --card-virado: #2c3e50;
+    --borda: #e2e8f0;
+}
+
+/* Quando o body tiver a classe dark-mode, as cores mudam sozinhas */
+body.dark-mode {
+    --bg-principal: #1a202c;
+    --bg-container: #2d3748;
+    --texto: #f7fafc;
+    --primaria: #63b3ed;
+    --card-virado: #4a5568;
+    --borda: #4a5568;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg-principal);
+    color: var(--texto);
+    line-height: 1.6;
+    padding: 20px;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 20px;
+    border-bottom: 2px solid var(--borda);
+    margin-bottom: 30px;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: var(--primaria);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+button:hover {
+    filter: brightness(0.9);
+}
+
+main {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+section {
+    background-color: var(--bg-container);
+    padding: 25px;
+    margin-bottom: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+}
+
+h2 {
+    margin-bottom: 15px;
+    border-left: 5px solid var(--primaria);
+    padding-left: 10px;
+}
+
+/* Configuração dos Artigos em Grid */
+.artigos-grid, .multimedia-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    margin-top: 15px;
+}
+
+.artigo, .midia-card {
+    background-color: var(--bg-principal);
+    padding: 20px;
+    border-radius: 6px;
+    border: 1px solid var(--borda);
+}
+
+/* Imagens e Vídeos Responsivos */
+.imagem-responsiva {
+    width: 100%;
+    height: auto;
+    border-radius: 6px;
+    margin-top: 10px;
+    display: block;
+}
+
+.video-responsivo {
+    position: relative;
+    padding-bottom: 56.25%; /* Proporção 16:9 */
+    height: 0;
+    overflow: hidden;
+    max-width: 100%;
+    background: #000;
+    border-radius: 6px;
+    margin-top: 10px;
+}
+
+.video-responsivo iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/* Tabuleiro do Jogo da Memória */
+.tabuleiro-memoria {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin-top: 15px;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 .carta-memoria {
     height: 100px;
     background-color: var(--card-virado);
@@ -8,16 +139,48 @@
     align-items: center;
     text-align: center;
     font-weight: bold;
-    color: white; /* Cor do texto quando estiver fechada (?) */
+    color: white;
     user-select: none;
     font-size: 0.85rem;
     padding: 5px;
-    transition: background-color 0.3s, transform 0.2s;
+    border: 2px solid transparent;
 }
 
-/* Estado da carta quando revelada ou combinada */
 .carta-memoria.revelada, .carta-memoria.combinada {
     background-color: var(--bg-principal);
     border: 2px solid var(--primaria);
-    color: var(--texto); /* Cor do texto do conceito revelado */
+    color: var(--texto);
+}
+
+#status-jogo {
+    margin-top: 15px;
+    text-align: center;
+    font-weight: bold;
+    color: #27ae60;
+}
+
+/* Quiz e Feedbacks */
+.opcoes label {
+    display: block;
+    margin: 10px 0;
+    cursor: pointer;
+}
+
+#resultado {
+    margin-top: 15px;
+    padding: 15px;
+    color: white;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.escondido {
+    display: none;
+}
+
+footer {
+    text-align: center;
+    margin-top: 40px;
+    font-size: 0.9rem;
+    color: #7f8c8d;
 }
