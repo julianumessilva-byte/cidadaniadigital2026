@@ -1,78 +1,142 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portal Cidadania Digital: Deepfakes e Desinformação</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <header>
-        <h1>Cidadania Digital</h1>
-        <button id="btn-tema">Alternar Modo Escuro</button>
-    </header>
+/* Cores do Modo Claro (Padrão) */
+:root {
+    --bg-geral: #f4f6f9;
+    --bg-card: #ffffff;
+    --texto: #2c3e50;
+    --primaria: #3498db;
+    --card-costas: #34495e;
+}
 
-    <main>
-        <section class="artigos-profundos">
-            <h2>Análise Profunda: A Era da Desinformação Automatizada</h2>
-            <div class="artigos-grid">
-                <article class="artigo">
-                    <h3>O que são Deepfakes de Próxima Geração?</h3>
-                    <p>As deepfakes utilizam redes neurais conhecidas como GANs (Redes Adversárias Generativas) para fundir rostos e vozes em mídias existentes. O maior perigo atual reside na velocidade de disseminação: algoritmos de redes sociais priorizam o engajamento emocional, fazendo com que conteúdos falsos e chocantes se espalhem mais rápido do que as checagens de fatos.</p>
-                </article>
-                <article class="artigo">
-                    <h3>Como Proteger sua Pegada Digital</h3>
-                    <p>Para evitar que suas fotos sejam usadas no treinamento de modelos maliciosos de IA, evite publicar imagens de alta resolução do seu rosto em perfis totalmente públicos. Além disso, sempre aplique o método dos três pilares ao consuming conteúdo: verifique a fonte original, procure por artefatos visuais (como dentes borrados e piscadas irregulares) e confirme se grandes portais de notícias validaram o acontecimento.</p>
-                </article>
-            </div>
-        </section>
+/* Cores do Modo Escuro */
+body.dark-mode {
+    --bg-geral: #1a1a2e;
+    --bg-card: #162447;
+    --texto: #e4e6eb;
+    --primaria: #007bff;
+    --card-costas: #1f4068;
+}
 
-        <section class="multimedia-container">
-            <h2>Galeria de Mídia Educativa</h2>
-            <div class="multimedia-grid">
-                <div class="midia-card">
-                    <h3>Biometria Facial e Manipulação</h3>
-                    <p>Representação visual de como algoritmos mapeiam pontos do rosto para criar máscaras digitais hiper-realistas.</p>
-                    <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=600&q=80" alt="Mapeamento digital de rosto por Inteligência Artificial" class="imagem-responsiva">
-                </div>
-                <div class="midia-card">
-                    <h3>Como Detetar Vídeos Falsos</h3>
-                    <p>Assista a esta explicação detalhada sobre as tecnologias usadas para fabricar notícias falsas em vídeo e como se proteger.</p>
-                    <div class="video-responsivo">
-                        <iframe src="https://www.youtube.com/embed/cQ54GDm1eL0" title="Como detetar uma deepfake - TED-Ed" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                    </div>
-                </div>
-            </div>
-        </section>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
 
-        <section class="jogo-container">
-            <h2>Jogo da Memória: Termos da Cidadania Digital</h2>
-            <p>Combine as 16 cartas com conceitos avançados para fixar o aprendizado!</p>
-            <div class="tabuleiro-memoria" id="tabuleiro"></div>
-            <div id="status-jogo"></div>
-        </section>
+body {
+    font-family: sans-serif;
+    background-color: var(--bg-geral);
+    color: var(--texto);
+    padding: 20px;
+    transition: background 0.3s, color 0.3s;
+}
 
-        <section class="quiz-container">
-            <h2>Quiz: Você sabe identificar uma Deepfake?</h2>
-            <form id="quiz-form">
-                <div class="pergunta">
-                    <label for="pergunta1"><strong>1. Qual destes é um sinal comum de um vídeo deepfake?</strong></label>
-                    <div class="opcoes">
-                        <label><input type="radio" name="p1" value="errado"> Movimentos perfeitamente naturais.</label>
-                        <label><input type="radio" name="p1" value="correto"> Piscadas de olhos anormais ou sombras desalinhadas no rosto.</label>
-                        <label><input type="radio" name="p1" value="errado"> Áudio com excelente qualidade de estúdio.</label>
-                    </div>
-                </div>
-                <button type="button" id="btn-verificar">Verificar Resposta</button>
-            </form>
-            <div id="resultado" class="escondido"></div>
-        </section>
-    </main>
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
 
-    <footer>
-        <p>&copy; 2026 - Projeto de Educação Digital e Computação. Desenvolvido para conscientização comunitária.</p>
-    </footer>
+button {
+    padding: 10px 15px;
+    background-color: var(--primaria);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
 
-    <script src="script.js"></script>
-</body>
-</html>
+main {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+section {
+    background-color: var(--bg-card);
+    padding: 20px;
+    margin-bottom: 25px;
+    border-radius: 8px;
+}
+
+h2 {
+    margin-bottom: 15px;
+}
+
+/* Grid para Artigos e Mídias ficarem lado a lado */
+.artigos-grid, .media-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.artigo, .media-card {
+    background-color: var(--bg-geral);
+    padding: 15px;
+    border-radius: 6px;
+}
+
+/* Imagens e Vídeos Ajustados */
+.img-responsiva {
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+    display: block;
+    margin-top: 10px;
+}
+
+.video-responsivo {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+    margin-top: 10px;
+}
+
+.video-responsivo iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 4px;
+}
+
+/* Tabuleiro do Jogo da Memória (12 Cartas - Nível Médio) */
+.tabuleiro-memoria {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    max-width: 450px;
+    margin: 20px auto 0 auto;
+}
+
+.carta-memoria {
+    height: 80px;
+    background-color: var(--card-costas);
+    color: white;
+    border-radius: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-size: 0.8rem;
+    cursor: pointer;
+    text-align: center;
+    padding: 5px;
+    user-select: none;
+}
+
+/* Quando a carta é virada */
+.carta-memoria.revelada, .carta-memoria.combinada {
+    background-color: var(--bg-geral);
+    color: var(--texto);
+    border: 2px solid var(--primaria);
+}
+
+#status-jogo {
+    text-align: center;
+    font-weight: bold;
+    margin-top: 15px;
+    color: #2ecc71;
+}
