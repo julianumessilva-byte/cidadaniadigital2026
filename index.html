@@ -1,142 +1,52 @@
-/* Cores do Modo Claro (Padrão) */
-:root {
-    --bg-geral: #f4f6f9;
-    --bg-card: #ffffff;
-    --texto: #2c3e50;
-    --primaria: #3498db;
-    --card-costas: #34495e;
-}
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal Cidadania Digital</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
-/* Cores do Modo Escuro */
-body.dark-mode {
-    --bg-geral: #1a1a2e;
-    --bg-card: #162447;
-    --texto: #e4e6eb;
-    --primaria: #007bff;
-    --card-costas: #1f4068;
-}
+    <header>
+        <h1>Cidadania Digital</h1>
+        <button id="btn-tema">Alternar Modo</button>
+    </header>
 
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
+    <main>
+        <section class="artigo-unico">
+            <h2>Análise Avançada: A Era da Desinformação e Engenharia Social</h2>
+            <article>
+                <p>O ecossistema digital contemporâneo enfrenta uma crise de integridade informacional devido ao avanço das técnicas de clonagem digital. Através de Redes Adversárias Generativas (GANs), atores maliciosos conseguem sintetizar dados biométricos, mimetizando perfeitamente expressões faciais, timbres de voz e trejeitos comportamentais. O maior desafio da cidadania digital na atualidade não reside apenas na sofisticação técnica dessas manipulações, mas sim na velocidade com que algoritmos de recomendação amplificam conteúdos hiper-realistas de forte apelo emocional, superando os mecanismos tradicionais de checagem de factos (fact-checking) antes que a verdade possa ser estabelecida.</p>
+            </article>
+        </section>
 
-body {
-    font-family: sans-serif;
-    background-color: var(--bg-geral);
-    color: var(--texto);
-    padding: 20px;
-    transition: background 0.3s, color 0.3s;
-}
+        <section class="jogo-container">
+            <h2>Jogo da Memória: Termos Técnicos</h2>
+            <p>Combine os conceitos idênticos para testar os teus conhecimentos:</p>
+            <div class="tabuleiro-memoria" id="tabuleiro"></div>
+            <div id="status-jogo"></div>
+        </section>
 
-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 30px;
-}
+        <section class="quiz-container">
+            <h2>Avaliação de Conhecimento Crítico</h2>
+            <form id="quiz-form">
+                <div class="pergunta">
+                    <label><strong>Considere o impacto das mídias sintéticas no debate público. Qual das alternativas abaixo descreve com precisão a principal vulnerabilidade estrutural das plataformas digitais frente à disseminação de deepfakes avançadas e o método técnico mais eficaz para mitigação inicial?</strong></label>
+                    <div class="opcoes">
+                        <label><input type="radio" name="p1" value="A"> A) A infraestrutura das redes sociais depende puramente de moderação humana em tempo real, tornando a validação de metadados obsoleta frente a ataques distribuídos.</label>
+                        <label><input type="radio" name="p1" value="B"> B) O design algorítmico prioriza métricas de engajamento baseadas em reações emocionais latentes; a mitigação envolve analisar anomalias visuais biométricas, como padrões de piscada irregulares e descontinuidades na iluminação volumétrica do rosto.</label>
+                        <label><input type="radio" name="p1" value="C"> C) As plataformas filtram automaticamente todo conteúdo criptografado de ponta a ponta, invalidando qualquer tentativa de rastreio de proveniência criptográfica desde o dispositivo de captura.</label>
+                        <label><input type="radio" name="p1" value="D"> D) A principal falha reside na ausência de IA generativa nos servidores centrais; o problema resolve-se ao banir o upload de arquivos de vídeo que não contenham compressão nativa H.264.</label>
+                        <label><input type="radio" name="p1" value="E"> E) Os sistemas de recomendação operam de forma neutra em relação ao comportamento do utilizador, exigindo exclusivamente auditorias jurídicas posteriores ao dano eleitoral ou reputacional.</label>
+                    </div>
+                </div>
+                <button type="button" id="btn-verificar">Verificar Resposta</button>
+            </form>
+            <div id="resultado" class="escondido"></div>
+        </section>
+    </main>
 
-button {
-    padding: 10px 15px;
-    background-color: var(--primaria);
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-weight: bold;
-}
-
-main {
-    max-width: 900px;
-    margin: 0 auto;
-}
-
-section {
-    background-color: var(--bg-card);
-    padding: 20px;
-    margin-bottom: 25px;
-    border-radius: 8px;
-}
-
-h2 {
-    margin-bottom: 15px;
-}
-
-/* Grid para Artigos e Mídias ficarem lado a lado */
-.artigos-grid, .media-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 20px;
-}
-
-.artigo, .media-card {
-    background-color: var(--bg-geral);
-    padding: 15px;
-    border-radius: 6px;
-}
-
-/* Imagens e Vídeos Ajustados */
-.img-responsiva {
-    width: 100%;
-    height: auto;
-    border-radius: 4px;
-    display: block;
-    margin-top: 10px;
-}
-
-.video-responsivo {
-    position: relative;
-    padding-bottom: 56.25%;
-    height: 0;
-    overflow: hidden;
-    margin-top: 10px;
-}
-
-.video-responsivo iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border-radius: 4px;
-}
-
-/* Tabuleiro do Jogo da Memória (12 Cartas - Nível Médio) */
-.tabuleiro-memoria {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 10px;
-    max-width: 450px;
-    margin: 20px auto 0 auto;
-}
-
-.carta-memoria {
-    height: 80px;
-    background-color: var(--card-costas);
-    color: white;
-    border-radius: 4px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-weight: bold;
-    font-size: 0.8rem;
-    cursor: pointer;
-    text-align: center;
-    padding: 5px;
-    user-select: none;
-}
-
-/* Quando a carta é virada */
-.carta-memoria.revelada, .carta-memoria.combinada {
-    background-color: var(--bg-geral);
-    color: var(--texto);
-    border: 2px solid var(--primaria);
-}
-
-#status-jogo {
-    text-align: center;
-    font-weight: bold;
-    margin-top: 15px;
-    color: #2ecc71;
-}
+    <script src="script.js"></script>
+</body>
+</html>
