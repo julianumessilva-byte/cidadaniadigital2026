@@ -1,10 +1,10 @@
-// 1. Alternar Modo (Corrigido para usar variáveis CSS corretamente)
+// 1. Alternar Modo
 const btnTema = document.getElementById('btn-tema');
 btnTema.addEventListener('click', () => {
     document.body.classList.toggle('dark-mode');
 });
 
-// 2. Validação do Quiz Complexo
+// 2. Validação do Quiz
 const btnVerificar = document.getElementById('btn-verificar');
 const formQuiz = document.getElementById('quiz-form');
 const divResultado = document.getElementById('resultado');
@@ -25,7 +25,7 @@ btnVerificar.addEventListener('click', () => {
     divResultado.classList.remove('escondido');
 });
 
-// 3. Jogo da Memória Avançado (12 Cartas)
+// 3. Jogo da Memória Avançado
 const conceitos = [
     'GANs', 'GANs',
     'Deepfake', 'Deepfake',
@@ -35,7 +35,7 @@ const conceitos = [
     'Metadados', 'Metadados'
 ];
 
-// Algoritmo de embaralhamento robusto (Fisher-Yates)
+// Embaralhar
 for (let i = conceitos.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
     [conceitos[i], conceitos[j]] = [conceitos[j], conceitos[i]];
@@ -67,7 +67,7 @@ function virarCarta() {
     cartasSelecionadas.push(this);
 
     if (cartasSelecionadas.length === 2) {
-        setTimeout(checarPar, 600); // Processa a validação rapidamente
+        setTimeout(checarPar, 700);
     }
 }
 
@@ -75,6 +75,8 @@ function checarPar() {
     const [carta1, carta2] = cartasSelecionadas;
 
     if (carta1.dataset.nome === carta2.dataset.nome) {
+        carta1.classList.remove('revelada');
+        carta2.classList.remove('revelada');
         carta1.classList.add('combinada');
         carta2.classList.add('combinada');
         paresEncontrados++;
