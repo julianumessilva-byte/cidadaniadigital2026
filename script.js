@@ -1,142 +1,90 @@
-/* Cores do Modo Claro (Padrão) */
-:root {
-    --bg-geral: #f4f6f9;
-    --bg-card: #ffffff;
-    --texto: #2c3e50;
-    --primaria: #3498db;
-    --card-costas: #34495e;
+// 1. Modo Escuro Correto
+const btnTema = document.getElementById('btn-tema');
+btnTema.addEventListener('click', () => {
+    document.body.classList.toggle('dark-mode');
+});
+
+// 2. Quiz Complexo
+const btnVerificar = document.getElementById('btn-verificar');
+const formQuiz = document.getElementById('quiz-form');
+const divResultado = document.getElementById('resultado');
+
+btnVerificar.addEventListener('click', () => {
+    const resposta = formQuiz.elements['p1'].value;
+
+    if (resposta === "B") {
+        divResultado.textContent = "🎉 Resposta Correta! Os algoritmos priorizam engajamento emocional, e a deteção precoce foca em falhas biométricas e volumétricas de renderização neural.";
+        divResultado.style.backgroundColor = "#2ecc71";
+    } else if (resposta === "") {
+        divResultado.textContent = "⚠️ Selecione uma alternativa para validar.";
+        divResultado.style.backgroundColor = "#e67e22";
+    } else {
+        divResultado.textContent = "❌ Incorreto. Analise os fatores de amplificação algorítmica e inconsistências biométricas (como reflexos e iluminação).";
+        divResultado.style.backgroundColor = "#e74c3c";
+    }
+    divResultado.classList.remove('escondido');
+});
+
+// 3. Jogo da Memória Avançado (12 Cartas)
+const conceitos = [
+    'GANs', 'GANs',
+    'Deepfake', 'Deepfake',
+    'Biometria', 'Biometria',
+    'Fact-Checking', 'Fact-Checking',
+    'Criptografia', 'Criptografia',
+    'Metadados', 'Metadados'
+];
+
+const conceitosEmbaralhados = conceitos.sort(() => 0.5 - Math.random());
+const tabuleiro = document.getElementById('tabuleiro');
+const statusJogo = document.getElementById('status-jogo');
+
+let cartasSelecionadas = [];
+let paresEncontrados = 0;
+
+tabuleiro.innerHTML = "";
+conceitosEmbaralhados.forEach((conceito) => {
+    const carta = document.createElement('div');
+    carta.classList.add('carta-memoria');
+    carta.dataset.nome = conceito;
+    carta.textContent = "?"; // Exibe "?" visualmente mesmo quando a cor esconde o texto interno
+    carta.addEventListener('click', virarCarta);
+    tabuleiro.appendChild(carta);
+});
+
+function virarCarta() {
+    if (cartasSelecionadas.length >= 2 || this.classList.contains('revelada') || this.classList.contains('combinada')) {
+        return;
+    }
+
+    this.classList.add('revelada');
+    this.textContent = this.dataset.nome;
+    cartasSelecionadas.push(this);
+
+    if (cartasSelecionadas.length === 2) {
+        checarPar();
+    }
 }
 
-/* Cores do Modo Escuro */
-body.dark-mode {
-    --bg-geral: #1a1a2e;
-    --bg-card: #162447;
-    --texto: #e4e6eb;
-    --primaria: #007bff;
-    --card-costas: #1f4068;
-}
+function checarPar() {
+    const [carta1, carta2] = cartasSelecionadas;
 
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
+    if (carta1.dataset.nome === carta2.dataset.nome) {
+        carta1.classList.add('combinada');
+        carta2.classList.add('combinada');
+        paresEncontrados++;
+        cartasSelecionadas = [];
 
-body {
-    font-family: sans-serif;
-    background-color: var(--bg-geral);
-    color: var(--texto);
-    padding: 20px;
-    transition: background 0.3s, color 0.3s;
-}
-
-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 30px;
-}
-
-button {
-    padding: 10px 15px;
-    background-color: var(--primaria);
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-weight: bold;
-}
-
-main {
-    max-width: 900px;
-    margin: 0 auto;
-}
-
-section {
-    background-color: var(--bg-card);
-    padding: 20px;
-    margin-bottom: 25px;
-    border-radius: 8px;
-}
-
-h2 {
-    margin-bottom: 15px;
-}
-
-/* Grid para Artigos e Mídias ficarem lado a lado */
-.artigos-grid, .media-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 20px;
-}
-
-.artigo, .media-card {
-    background-color: var(--bg-geral);
-    padding: 15px;
-    border-radius: 6px;
-}
-
-/* Imagens e Vídeos Ajustados */
-.img-responsiva {
-    width: 100%;
-    height: auto;
-    border-radius: 4px;
-    display: block;
-    margin-top: 10px;
-}
-
-.video-responsivo {
-    position: relative;
-    padding-bottom: 56.25%;
-    height: 0;
-    overflow: hidden;
-    margin-top: 10px;
-}
-
-.video-responsivo iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border-radius: 4px;
-}
-
-/* Tabuleiro do Jogo da Memória (12 Cartas - Nível Médio) */
-.tabuleiro-memoria {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 10px;
-    max-width: 450px;
-    margin: 20px auto 0 auto;
-}
-
-.carta-memoria {
-    height: 80px;
-    background-color: var(--card-costas);
-    color: white;
-    border-radius: 4px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-weight: bold;
-    font-size: 0.8rem;
-    cursor: pointer;
-    text-align: center;
-    padding: 5px;
-    user-select: none;
-}
-
-/* Quando a carta é virada */
-.carta-memoria.revelada, .carta-memoria.combinada {
-    background-color: var(--bg-geral);
-    color: var(--texto);
-    border: 2px solid var(--primaria);
-}
-
-#status-jogo {
-    text-align: center;
-    font-weight: bold;
-    margin-top: 15px;
-    color: #2ecc71;
+        if (paresEncontrados === conceitos.length / 2) {
+            statusJogo.textContent = "🏆 Excelente! Todos os conceitos avançados foram associados!";
+        }
+    } else {
+        setTimeout(() => {
+            carta1.classList.remove('revelada');
+            carta2.classList.remove('revelada');
+            carta1.textContent = "?";
+            carta2.textContent = "?";
+            cartasSelecionadas = [];
+        }, 1000);
+    }
 }
