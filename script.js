@@ -30,15 +30,19 @@ btnVerificar.addEventListener('click', () => {
     divResultado.classList.remove('escondido');
 });
 
-// 3. Mecânica do Jogo da Memória
+// 3. Mecânica do Jogo da Memória (DIFICULDADE EXPANDIDA - 16 Cartas)
 const conceitos = [
     'Deepfake', 'Deepfake',
     'Fact-Checking', 'Fact-Checking',
     'Algoritmo', 'Algoritmo',
-    'Privacidade', 'Privacidade'
+    'Privacidade', 'Privacidade',
+    'Phishing', 'Phishing',
+    'Botnet', 'Botnet',
+    'Criptografia', 'Criptografia',
+    'Metadados', 'Metadados'
 ];
 
-// Embaralha os itens
+// Baralha os itens de forma aleatória
 const conceitosEmbaralhados = conceitos.sort(() => 0.5 - Math.random());
 const tabuleiro = document.getElementById('tabuleiro');
 const statusJogo = document.getElementById('status-jogo');
@@ -46,7 +50,7 @@ const statusJogo = document.getElementById('status-jogo');
 let cartasSelecionadas = [];
 let paresEncontrados = 0;
 
-// Limpa e inicializa o tabuleiro
+// Inicializa o tabuleiro
 tabuleiro.innerHTML = "";
 
 conceitosEmbaralhados.forEach((conceito, index) => {
@@ -84,7 +88,7 @@ function checarPar() {
         cartasSelecionadas = [];
 
         if (paresEncontrados === conceitos.length / 2) {
-            statusJogo.textContent = "🏆 Excelente! Você dominou todos os conceitos contra a desinformação!";
+            statusJogo.textContent = "🏆 Excelente! Você dominou todos os conceitos avançados de Cidadania Digital!";
         }
     } else {
         setTimeout(() => {
