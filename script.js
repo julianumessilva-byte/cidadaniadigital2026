@@ -30,7 +30,7 @@ btnVerificar.addEventListener('click', () => {
     divResultado.classList.remove('escondido');
 });
 
-// 3. Mecânica do Jogo da Memória (Corrigida)
+// 3. Mecânica do Jogo da Memória
 const conceitos = [
     'Deepfake', 'Deepfake',
     'Fact-Checking', 'Fact-Checking',
@@ -46,28 +46,25 @@ const statusJogo = document.getElementById('status-jogo');
 let cartasSelecionadas = [];
 let paresEncontrados = 0;
 
-// Limpa o tabuleiro antes de desenhar (evita duplicações se reiniciar)
+// Limpa e inicializa o tabuleiro
 tabuleiro.innerHTML = "";
 
-// Inicializa e monta as cartas dinamicamente no DOM
 conceitosEmbaralhados.forEach((conceito, index) => {
     const carta = document.createElement('div');
     carta.classList.add('carta-memoria');
     carta.dataset.nome = conceito;
     carta.dataset.id = index;
-    carta.textContent = "?"; // Começa escondido com um sinal de interrogação
+    carta.textContent = "?"; 
     
     carta.addEventListener('click', virarCarta);
     tabuleiro.appendChild(carta);
 });
 
 function virarCarta() {
-    // Evita clicar na mesma carta ou clicar quando duas já estão sendo avaliadas
     if (cartasSelecionadas.length >= 2 || this.classList.contains('revelada') || this.classList.contains('combinada')) {
         return;
     }
 
-    // Revela o texto real da carta ao clicar
     this.classList.add('revelada');
     this.textContent = this.dataset.nome; 
     cartasSelecionadas.push(this);
@@ -81,7 +78,6 @@ function checarPar() {
     const [carta1, carta2] = cartasSelecionadas;
 
     if (carta1.dataset.nome === carta2.dataset.nome) {
-        // Se formarem um par
         carta1.classList.add('combinada');
         carta2.classList.add('combinada');
         paresEncontrados++;
@@ -91,7 +87,6 @@ function checarPar() {
             statusJogo.textContent = "🏆 Excelente! Você dominou todos os conceitos contra a desinformação!";
         }
     } else {
-        // Se errarem o par, vira de volta para "?" após 1 segundo
         setTimeout(() => {
             carta1.classList.remove('revelada');
             carta2.classList.remove('revelada');
