@@ -3,75 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portal Cidadania Digital: Deepfakes e Desinformação</title>
+    <title>Portal Cidadania Digital</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
     <header>
         <h1>Cidadania Digital</h1>
-        <button id="btn-tema">Alternar Modo Escuro</button>
+        <button id="btn-tema">Alternar Modo</button>
     </header>
 
     <main>
-        <section class="artigos-profundos">
-            <h2>Análise Profunda: A Era da Desinformação Automatizada</h2>
+        <section class="artigos-container">
+            <h2>Análise Profunda: A Era da Desinformação</h2>
             <div class="artigos-grid">
                 <article class="artigo">
-                    <h3>O que são Deepfakes de Próxima Geração?</h3>
-                    <p>As deepfakes utilizam redes neurais conhecidas como GANs (Redes Adversárias Generativas) para fundir rostos e vozes em mídias existentes. O maior perigo atual reside na velocidade de disseminação: algoritmos de redes sociais priorizam o engajamento emocional, fazendo com que conteúdos falsos e chocantes se espalhem mais rápido do que as checagens de fatos.</p>
+                    <h3>O que são Deepfakes?</h3>
+                    <p>As deepfakes utilizam inteligência artificial para fundir rostos e vozes em vídeos existentes, criando conteúdos falsos altamente realistas que se espalham rapidamente na internet.</p>
                 </article>
                 <article class="artigo">
-                    <h3>Como Proteger sua Pegada Digital</h3>
-                    <p>Para evitar que suas fotos sejam usadas no treinamento de modelos maliciosos de IA, evite publicar imagens de alta resolução do seu rosto em perfis totalmente públicos. Além disso, sempre aplique o método dos três pilares ao consuming conteúdo: verifique a fonte original, procure por artefatos visuais (como dentes borrados e piscadas irregulares) e confirme se grandes portais de notícias validaram o acontecimento.</p>
+                    <h3>Como se proteger</h3>
+                    <p>Evite partilhar fotos de alta resolução em perfis públicos e use sempre o método de verificar a fonte original e procurar por falhas visuais antes de partilhar um vídeo.</p>
                 </article>
             </div>
         </section>
 
-        <section class="multimedia-container">
-            <h2>Galeria de Mídia Educativa</h2>
-            <div class="multimedia-grid">
-                <div class="midia-card">
-                    <h3>Biometria Facial e Manipulação</h3>
-                    <p>Representação visual de como algoritmos mapeiam pontos do rosto para criar máscaras digitais hiper-realistas.</p>
-                    <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=600&q=80" alt="Mapeamento digital de rosto por Inteligência Artificial" class="imagem-responsiva">
+        <section class="media-container">
+            <h2>Conteúdo Multimédia</h2>
+            <div class="media-grid">
+                <div class="media-card">
+                    <h3>Análise Facial</h3>
+                    <img src="https://picsum.photos/600/400?random=1" alt="Representação de Inteligência Artificial" class="img-responsiva">
                 </div>
-                <div class="midia-card">
-                    <h3>Como Detetar Vídeos Falsos</h3>
-                    <p>Assista a esta explicação detalhada sobre as tecnologias usadas para fabricar notícias falsas em vídeo e como se proteger.</p>
+                <div class="media-card">
+                    <h3>Vídeo Educativo</h3>
                     <div class="video-responsivo">
-                        <iframe src="https://www.youtube.com/embed/cQ54GDm1eL0" title="Como detetar uma deepfake - TED-Ed" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        <iframe src="https://www.youtube.com/embed/cQ54GDm1eL0" title="Como detetar deepfakes" frameborder="0" allowfullscreen></iframe>
                     </div>
                 </div>
             </div>
         </section>
 
         <section class="jogo-container">
-            <h2>Jogo da Memória: Termos da Cidadania Digital</h2>
-            <p>Combine as 16 cartas com conceitos avançados para fixar o aprendizado!</p>
+            <h2>Jogo da Memória: Termos Digitais</h2>
+            <p>Encontre os pares para fixar os conceitos!</p>
             <div class="tabuleiro-memoria" id="tabuleiro"></div>
             <div id="status-jogo"></div>
         </section>
-
-        <section class="quiz-container">
-            <h2>Quiz: Você sabe identificar uma Deepfake?</h2>
-            <form id="quiz-form">
-                <div class="pergunta">
-                    <label for="pergunta1"><strong>1. Qual destes é um sinal comum de um vídeo deepfake?</strong></label>
-                    <div class="opcoes">
-                        <label><input type="radio" name="p1" value="errado"> Movimentos perfeitamente naturais.</label>
-                        <label><input type="radio" name="p1" value="correto"> Piscadas de olhos anormais ou sombras desalinhadas no rosto.</label>
-                        <label><input type="radio" name="p1" value="errado"> Áudio com excelente qualidade de estúdio.</label>
-                    </div>
-                </div>
-                <button type="button" id="btn-verificar">Verificar Resposta</button>
-            </form>
-            <div id="resultado" class="escondido"></div>
-        </section>
     </main>
-
-    <footer>
-        <p>&copy; 2026 - Projeto de Educação Digital e Computação. Desenvolvido para conscientização comunitária.</p>
-    </footer>
 
     <script src="script.js"></script>
 </body>
