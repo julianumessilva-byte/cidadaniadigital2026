@@ -1,93 +1,52 @@
-// 1. Alternar Modo (Corrigido para usar variáveis CSS corretamente)
-const btnTema = document.getElementById('btn-tema');
-btnTema.addEventListener('click', () => {
-    document.body.classList.toggle('dark-mode');
-});
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal Cidadania Digital</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
 
-// 2. Validação do Quiz Complexo
-const btnVerificar = document.getElementById('btn-verificar');
-const formQuiz = document.getElementById('quiz-form');
-const divResultado = document.getElementById('resultado');
+    <header>
+        <h1>Cidadania Digital</h1>
+        <button id="btn-tema">Alternar Modo</button>
+    </header>
 
-btnVerificar.addEventListener('click', () => {
-    const resposta = formQuiz.elements['p1'].value;
+    <main>
+        <section class="artigo-unico">
+            <h2>Análise Avançada: A Era da Desinformação e Engenharia Social</h2>
+            <article>
+                <p>O ecossistema digital contemporâneo enfrenta uma crisis de integridade informacional devido ao avanço das técnicas de clonagem digital. Através de Redes Adversárias Generativas (GANs), atores maliciosos conseguem sintetizar dados biométricos, mimetizando perfeitamente expressões faciais, timbres de voz e trejeitos comportamentais. O maior desafio da cidadania digital na atualidade não reside apenas na sofisticação técnica dessas manipulações, mas sim na velocidade com que algoritmos de recomendação amplificam conteúdos hiper-realistas de forte apelo emocional, superando os mecanismos tradicionais de checagem de factos (fact-checking) antes que a verdade possa ser estabelecida.</p>
+            </article>
+        </section>
 
-    if (resposta === "B") {
-        divResultado.textContent = "🎉 Resposta Correta! Os algoritmos de recomendação priorizam reações de forte engajamento emocional, e a deteção de anomalias biométricas/volumétricas é crucial no combate às deepfakes.";
-        divResultado.style.backgroundColor = "#2ecc71";
-    } else if (resposta === "") {
-        divResultado.textContent = "⚠️ Selecione uma alternativa para validar.";
-        divResultado.style.backgroundColor = "#e67e22";
-    } else {
-        divResultado.textContent = "❌ Incorreto. Analise os fatores de amplificação algorítmica por engajamento e inconsistências de renderização biométrica.";
-        divResultado.style.backgroundColor = "#e74c3c";
-    }
-    divResultado.classList.remove('escondido');
-});
+        <section class="jogo-container">
+            <h2>Jogo da Memória: Termos Técnicos</h2>
+            <p>Combine os conceitos idênticos para testar os teus conhecimentos:</p>
+            <div class="tabuleiro-memoria" id="tabuleiro"></div>
+            <div id="status-jogo"></div>
+        </section>
 
-// 3. Jogo da Memória Avançado (12 Cartas)
-const conceitos = [
-    'GANs', 'GANs',
-    'Deepfake', 'Deepfake',
-    'Biometria', 'Biometria',
-    'Fact-Checking', 'Fact-Checking',
-    'Criptografia', 'Criptografia',
-    'Metadados', 'Metadados'
-];
+        <section class="quiz-container">
+            <h2>Avaliação de Conhecimento Crítico</h2>
+            <form id="quiz-form">
+                <div class="pergunta">
+                    <label><strong>Considere o impacto das mídias sintéticas no debate público. Qual das alternativas abaixo descreve com precisão a principal vulnerabilidade estrutural das plataformas digitais frente à disseminação de deepfakes avançadas e o método técnico mais eficaz para mitigação inicial?</strong></label>
+                    <div class="opcoes">
+                        <label><input type="radio" name="p1" value="A"> A) A infraestrutura das redes sociais depende puramente de moderação humana em tempo real, tornando a validação de metadados obsoleta frente a ataques distribuídos.</label>
+                        <label><input type="radio" name="p1" value="B"> B) O design algorítmico prioriza métricas de engajamento baseadas em reações emocionais latentes; a mitigação envolve analisar anomalias visuais biométricas, como padrões de piscada irregulares e descontinuidades na iluminação volumétrica do rosto.</label>
+                        <label><input type="radio" name="p1" value="C"> C) As plataformas filtram automaticamente todo conteúdo criptografado de ponta a ponta, invalidando qualquer tentativa de rastreio de proveniência criptográfica desde o dispositivo de captura.</label>
+                        <label><input type="radio" name="p1" value="D"> D) A principal falha reside na ausência de IA generativa nos servidores centrais; o problema resolve-se ao banir o upload de arquivos de vídeo que não contenham compressão nativa H.264.</label>
+                        <label><input type="radio" name="p1" value="E"> E) Os sistemas de recomendação operam de forma neutra em relação ao comportamento do utilizador, exigindo exclusivamente auditorias jurídicas posteriores ao dano eleitoral ou reputacional.</label>
+                    </div>
+                </div>
+                <button type="button" id="btn-verificar">Verificar Resposta</button>
+            </form>
+            <div id="resultado" class="escondido"></div>
+        </section>
+    </main>
 
-// Algoritmo de embaralhamento robusto (Fisher-Yates)
-for (let i = conceitos.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [conceitos[i], conceitos[j]] = [conceitos[j], conceitos[i]];
-}
-
-const tabuleiro = document.getElementById('tabuleiro');
-const statusJogo = document.getElementById('status-jogo');
-
-let cartasSelecionadas = [];
-let paresEncontrados = 0;
-
-tabuleiro.innerHTML = "";
-conceitos.forEach((conceito) => {
-    const carta = document.createElement('div');
-    carta.classList.add('carta-memoria');
-    carta.dataset.nome = conceito;
-    carta.textContent = "?"; 
-    carta.addEventListener('click', virarCarta);
-    tabuleiro.appendChild(carta);
-});
-
-function virarCarta() {
-    if (cartasSelecionadas.length >= 2 || this.classList.contains('revelada') || this.classList.contains('combinada')) {
-        return;
-    }
-
-    this.classList.add('revelada');
-    this.textContent = this.dataset.nome;
-    cartasSelecionadas.push(this);
-
-    if (cartasSelecionadas.length === 2) {
-        setTimeout(checarPar, 600); // Processa a validação rapidamente
-    }
-}
-
-function checarPar() {
-    const [carta1, carta2] = cartasSelecionadas;
-
-    if (carta1.dataset.nome === carta2.dataset.nome) {
-        carta1.classList.add('combinada');
-        carta2.classList.add('combinada');
-        paresEncontrados++;
-        cartasSelecionadas = [];
-
-        if (paresEncontrados === conceitos.length / 2) {
-            statusJogo.textContent = "🏆 Excelente! Todos os conceitos avançados foram associados!";
-        }
-    } else {
-        carta1.classList.remove('revelada');
-        carta2.classList.remove('revelada');
-        carta1.textContent = "?";
-        carta2.textContent = "?";
-        cartasSelecionadas = [];
-    }
-}
+    <script src="script.js"></script>
+</body>
+</html>
